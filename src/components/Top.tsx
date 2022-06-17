@@ -18,6 +18,7 @@ const Top: React.FC = () => {
                 <li><Link to='todo'>TodoList</Link></li>
                 <li><Link to={`todo?${params}`}>パラメータ付きTodoList</Link></li>
                 <li><Link to={'about'}>About</Link></li>
+                <li><Link to={'items'}>Go Items</Link></li>
             </ul>
 
             <button onClick={() => navigate(`todo?${params}`)}>パラメータ付きTodoList</button>
