@@ -17,6 +17,8 @@ import Items from './components/Items';
 import Item1 from './components/Item1';
 import Item2 from './components/Item2';
 import { Item3 } from './components/Items';
+import Message from './components/Message';
+import NameForm from './components/NameForm';
 
 const App: React.FC = () => {
   // 1、tasksコレクションを取得
@@ -28,14 +30,26 @@ const App: React.FC = () => {
   console.log(collections);
   console.log(documents);
 
-
+  const [message, setMessage] = useState<string>("");
+  // const handleTextInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+  //   setMessage(e.target.value);
+  // };
+  const [name, setName] = useState<string>("");
+  const handleTextInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setName(e.target.value);
+  };
+  const sayHello = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setName(e.target.value)
+  }
 
   return (
     <div className="App">
       <div className="App-header">
+        <Message message={message}/>
         <BrowserRouter>
           <Routes>
-            <Route path='/' element={<Top />} />
+            <Route path='/' element={<Top name={name}/>} />
+            <Route path='/nameform' element={<NameForm name={name} setName={setName} />} />
             <Route path='/login' element={<Login />} />
             <Route path='/todo' element={[<TodoList />, <Login />]} />
             <Route path='/about' element={<About Message='これはprops.messageです' />} />
