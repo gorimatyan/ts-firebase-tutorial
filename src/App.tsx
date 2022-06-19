@@ -19,6 +19,8 @@ import Item2 from './components/Item2';
 import { Item3 } from './components/Items';
 import Message from './components/Message';
 import NameForm from './components/NameForm';
+import Detail from './components/Detail';
+import MessageForm from './components/MessageForm';
 
 const App: React.FC = () => {
   // 1、tasksコレクションを取得
@@ -34,7 +36,7 @@ const App: React.FC = () => {
   // const handleTextInput = (e: React.ChangeEvent<HTMLInputElement>) => {
   //   setMessage(e.target.value);
   // };
-  const [name, setName] = useState<string>("");
+  const [name, setName] = useState<string>("名前　初期値");
   const handleTextInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     setName(e.target.value);
   };
@@ -45,24 +47,28 @@ const App: React.FC = () => {
   return (
     <div className="App">
       <div className="App-header">
-        <Message message={message}/>
+        <Message message={message} />
         <BrowserRouter>
           <Routes>
-            <Route path='/' element={<Top name={name}/>} />
-            <Route path='/nameform' element={<NameForm name={name} setName={setName} />} />
+            <Route path='/' element={<Top name={name} />} />
+            <Route path='/nameform' element={<NameForm name={name} setName={setName}  />} />
+            <Route path='/messageform' element={<MessageForm message={message} setMessage={setMessage} />} />
             <Route path='/login' element={<Login />} />
             <Route path='/todo' element={[<TodoList />, <Login />]} />
             <Route path='/about' element={<About Message='これはprops.messageです' />} />
             <Route path="*" element={<NotFound />} />
-            <Route path='items' element={<Items />} >
+            <Route path='/items' element={<Items />} >
               <Route index />
-              <Route path='item1' element={<Item1 />} />
+              <Route path='item1' element={<Item1 />}>
+                {/* Route（/item1）のネスト要素 */}
+                <Route path='detail' element={<Detail />} /> 
+              </Route>
               <Route path='item2' element={<Item2 />} />
               <Route path='item3' element={<Item3 />} />
-            </Route>
+              </Route>
           </Routes>
         </BrowserRouter>
-      </div>
+    </div>
     </div>
   );
 }
