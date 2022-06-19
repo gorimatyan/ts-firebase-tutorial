@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import db from "./firebase"
+import { db } from "./firebase"
 import { addDoc, collection, doc, Firestore, getDocs, onSnapshot } from "firebase/firestore"
 import './App.css';
 import TestComponet from './TestComponet';
@@ -21,6 +21,7 @@ import Message from './components/Message';
 import NameForm from './components/NameForm';
 import Detail from './components/Detail';
 import MessageForm from './components/MessageForm';
+import ImgUpload from './components/ImgUpload';
 
 const App: React.FC = () => {
   // 1、tasksコレクションを取得
@@ -53,6 +54,7 @@ const App: React.FC = () => {
             <Route path='/' element={<Top name={name} />} />
             <Route path='/nameform' element={<NameForm name={name} setName={setName}  />} />
             <Route path='/messageform' element={<MessageForm message={message} setMessage={setMessage} />} />
+            <Route path='/imgupload' element={<ImgUpload />} />
             <Route path='/login' element={<Login />} />
             <Route path='/todo' element={[<TodoList />, <Login />]} />
             <Route path='/about' element={<About Message='これはprops.messageです' />} />

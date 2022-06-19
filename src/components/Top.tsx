@@ -20,7 +20,8 @@ const Top: React.FC<Props> = (props) => {
             <h2>{props.name}</h2>
             <ul>
                 <li><Link to='nameform'>名前を変更</Link></li>
-                <li><Link to='messageForm'>メッセージを変える</Link></li>
+                <li><Link to='messageform'>メッセージを変える</Link></li>
+                <li><Link to='imgupload'>画像を変える</Link></li>
                 <li><Link to='login'>Login</Link></li>
                 <li><Link to='todo'>TodoList</Link></li>
                 <li><Link to={`todo?${params}`}>パラメータ付きTodoList</Link></li>
