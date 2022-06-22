@@ -2,7 +2,7 @@ import React from 'react'
 
 type Props = {
     message: string;
-    setMessage:  React.Dispatch<React.SetStateAction<string>>;
+    setMessage: React.Dispatch<React.SetStateAction<string>>;
 }
 
 const MessageForm: React.FC<Props> = (props) => {
@@ -13,12 +13,14 @@ const MessageForm: React.FC<Props> = (props) => {
         })
     }
 
-  return (
-    <>
-        <h1>MessageForm</h1>
-        <input type="text" value={props.message} onChange={(e) => {changeMessage(e)}}/>
-    </>
-  )
+    return (
+        <>
+            <h1>MessageForm</h1>
+            <div>
+                <input type="text" value={props.message} onChange={(e) => { changeMessage(e) }} />
+            </div>
+        </>
+    )
 }
 
 export default MessageForm

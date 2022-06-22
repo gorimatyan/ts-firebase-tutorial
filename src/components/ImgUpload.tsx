@@ -14,15 +14,16 @@ const ImgUpload = () => {
   const [uploaded, setuploaded] = useState<boolean>(false);
 
   const uploadImg = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if(e.target.files){
-        const file = e.target.files[0];
-        console.log(file);
-        const imageRef = ref(storage, "images/" + file.name); //変数を使ってファイルパスを作成する
-        const uploadImage = uploadBytesResumable(imageRef, file); //imageRefのファイルパスでfileを保存するよって意味
+    if (e.target.files) {
+      const file = e.target.files[0];
+      console.log(file);
+      const imageRef = ref(storage, "images/" + file.name); //変数を使ってファイルパスを作成する
+      const imageRefPath = imageRef.toString();
+      const uploadImage = uploadBytesResumable(imageRef, file); //imageRefのファイルパスでfileを保存するよって意味
 
-        uploadImage.on("state_changed",(snapshot)=>{  //state_changedは状態が変わったら第二引数の関数を使うって意味
-            setLoading(true);
-        },
+      uploadImage.on("state_changed", (snapshot) => {  //state_changedは状態が変わったら第二引数の関数を使うって意味
+        setLoading(true);
+      },
         (err) => {
           console.log(err);
           // console.log(storage);
@@ -30,17 +31,31 @@ const ImgUpload = () => {
         () => {
           setLoading(false);
           setuploaded(true);
+          console.log(imageRefPath);
         }
-        )
+      )
     }
   }
-    return (
+  return (
+    <>
+      <div>ImgUplode</div>
+      <h1>画像アップロード</h1>
+      <form>
+        <input type="file" onChange={uploadImg} accept=".jpg,.png,.jpeg" />
+        {/* <button type="submit" onSubmit={}>送信</button> */}
+      </form>
+
+      {loading ? (<h2>アップロード中…</h2>) :
         <>
-            <div>ImgUplode</div>
-            <h1>画像アップロード</h1>
-            <input type="file" onChange={uploadImg} accept=".jpg,.png,.jpeg" />
+          {uploaded ? <h2>アップロードが完了しました</h2> :
+            <h2>画像をアップロードして下さい</h2>
+          }
         </>
-    )
+      }
+    </>
+
+
+  )
 }
 
 export default ImgUpload

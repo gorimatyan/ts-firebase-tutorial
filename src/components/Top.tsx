@@ -1,8 +1,9 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { createSearchParams, Link, useNavigate } from 'react-router-dom'
 
 type Props ={
     name: string
+    message: string
 }
 const Top: React.FC<Props> = (props) => {
     const params: string = createSearchParams({
@@ -16,8 +17,9 @@ const Top: React.FC<Props> = (props) => {
 
     return (
         <>
-            <h1>Top</h1>
-            <h2>{props.name}</h2>
+        <div className='flex flex-col'>
+            <h1 className='font-bold text-red-400 mb-3.5'>Top</h1>
+
             <ul>
                 <li><Link to='nameform'>名前を変更</Link></li>
                 <li><Link to='messageform'>メッセージを変える</Link></li>
@@ -30,6 +32,7 @@ const Top: React.FC<Props> = (props) => {
             </ul>
 
             <button onClick={() => navigate(`todo?${params}`)}>パラメータ付きTodoList</button>
+        </div>
         </>
 
 

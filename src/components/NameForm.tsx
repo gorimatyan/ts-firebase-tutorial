@@ -15,8 +15,10 @@ const NameForm:React.FC<Props>= (props) => {
 
   return (
     <>
-        <div>名前：{props.name} </div>
-        <input type="text" value={props.name} onChange={(e) => {changeName(e)}}/>
+        <div>名前：</div>
+        <div>
+            <input type="text" value={props.name} onChange={(e) => {changeName(e)}}/>
+        </div>
     </>
     )
 }
