@@ -1,15 +1,28 @@
-import React from 'react';
+import React, { createContext, useState } from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+
+export const UserContext = createContext<userData>({name:'',message:''});
+type userData = {
+  name: string,
+  message: string
+}
+const userData ={
+  name: 'UserContextのnameです',
+  message: 'UserContextのmessageです'
+}
+
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 root.render(
   <React.StrictMode>
-    <App />
+    <UserContext.Provider value={userData}>
+      <App />
+    </UserContext.Provider>
   </React.StrictMode>
 );
 
